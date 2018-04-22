@@ -71,6 +71,8 @@ wine_test <- wine_df[120416:120915,]
 
 model <- randomForest(points ~ price + country, data = wine_train, importance = TRUE, ntree = 1000)
 
+varImpPlot(model, sort = TRUE, n.var = 2, type = NULL, class = NULL, scale = TRUE, main = "Variable Importance Plot", color = "blue", pch = 16)
+
 pred <- predict(model, newdata = wine_test)
 
 pred_table <- data.frame("Predicted Score" = pred, "Actual Score" = wine_test$points, "Error" = pred - wine_test$points)
